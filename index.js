@@ -5,11 +5,22 @@ const app = require('./lib/server.js')
 require('dotenv').config();
 const PORT = process.env.PORT;
 
-// change start script in package.json 
+const mongoose = require('mongoose');
 
-// create docs folder and paste in downloaded file from swagger
+const PORT = process.env.PORT;
+const DB_URI = process.env.MONGODB_URI;
 
 
-app.listen(PORT, ()=>{
-    console.log('listening on port 3000');
-})
+mongoose.connect(DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+    .then(() =>{
+        console.log('connected to db');
+        app.listen(PORT, () =>{
+            console.log('server is running on port', PORT);
+        });
+    })
+    .catch(err =>{
+        console.error(err);
+    })
