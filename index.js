@@ -7,13 +7,13 @@ const PORT = process.env.PORT;
 
 const mongoose = require('mongoose');
 
-const PORT = process.env.PORT;
+
 const DB_URI = process.env.MONGODB_URI;
 
 
 mongoose.connect(DB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
     .then(() =>{
         console.log('connected to db');
@@ -23,4 +23,4 @@ mongoose.connect(DB_URI, {
     })
     .catch(err =>{
         console.error(err);
-    })
+    });
